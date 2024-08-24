@@ -31,31 +31,33 @@ async function realizarTransacao() {
     if (saldoUsuario >= valorTotalTransacao) {
         saldoUsuario -= valorTotalTransacao;
         transacoes.push({ nomeUsuario, quantidadeTokens, enderecoCartiraDestino, transacaoComfirmada: true });
-        console.log("Transação confirmada com sucesso!");
+        console.log("\nTransação confirmada com sucesso!");
     } else {
-        console.log("Erro: Saldo INSUFICIENTE para realizar a transação");
+        console.log("\nErro: Saldo INSUFICIENTE para realizar a transação");
     }
 }
 
 // Menu interativo
 async function menuInterativo() {
     while (true) {
-        let opcao = await solicitarEntrada("Escolha uma opção:\n1. Realizar uma nova transação\n2. Ver saldo atual\n3. Ver transações\n4. Sair\n");
+        let opcao = await solicitarEntrada("\nEscolha uma opção:\n1. Realizar uma nova transação\n2. Ver saldo atual\n3. Ver transações\n4. Sair\n");
 
         switch (opcao) {
             case "1":
                 await realizarTransacao();
                 break;
             case "2":
-                console.log("Seu saldo atual é: " + saldoUsuario.toFixed(2));
+                console.log("\nSeu saldo atual é: " + saldoUsuario.toFixed(2));
                 break;
             case "3":
                 if (transacoes.length === 0) {
-                    console.log("Nenhuma transação realizada ainda.");
+                    console.log("\nNenhuma transação realizada ainda.");
                 } else {
                     console.log("Transações:");
                     transacoes.forEach(transacao => {
-                        console.log(`Nome: ${transacao.nomeUsuario}, Tokens: ${transacao.quantidadeTokens}, Endereço: ${transacao.enderecoCartiraDestino}, Confirmada: ${transacao.transacaoComfirmada}`);
+                        // Aqui está a modificação
+                        const confirmadaStr = transacao.transacaoComfirmada ? "Sim" : "Não";
+                        console.log(`Nome: ${transacao.nomeUsuario}, Tokens: ${transacao.quantidadeTokens}, Endereço: ${transacao.enderecoCartiraDestino}, Confirmada: ${confirmadaStr}`);
                     });
                 }
                 break;
