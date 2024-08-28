@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ff9743; /* Light blue background for the body */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 2em;
+    color: #000000; /* Blue color for the title */
+    text-shadow: 1px 1px 2px #ffffff; /* White highlight */
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scoreboard {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+}
+
+.choice {
+    margin: 0 15px;
+    cursor: pointer;
+    background-color: #ffffff; /* White background for the choice boxes */
+    border: 2px solid #bfff00; /* Blue border around the boxes */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.choice img {
+    width: 100px;
+    transition: transform 0.3s;
+}
+
+.choice p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #000000;
+}
+
+.final-score {
+    margin-top: 10px;
+    font-size: 1.3em;
+    color: #666;
+}
+
+#play-again {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #ffffff; /* White background for the button */
+    color: #333; /* Black text color for the button */
+    border: 2px solid #007bff; /* Blue border around the button */
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#play-again:hover {
+    background-color: #b7b7b7; /* Slightly grey background on hover */
+    border-color: #0c7aef; /* Darker blue border on hover */
+}

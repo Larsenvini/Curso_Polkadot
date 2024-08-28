@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedra, Papel, Tesoura</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Pedra, Papel, Tesoura</h1>
+    <div class="game-container">
+        <div class="scoreboard">
+            <p>Vitórias = <span id="won">0</span> | Derrotas = <span id="lost">0</span> | Empates = <span id="draw">0</span></p>
+        </div>
+        <div class="choices">
+            <div id="rock" class="choice" onclick="playGame('rock')">
+                <img src="rock.png" alt="Pedra">
+                <p>Pedra</p>
+            </div>
+            <div id="paper" class="choice" onclick="playGame('paper')">
+                <img src="paper.png" alt="Papel">
+                <p>Papel</p>
+            </div>
+            <div id="scissors" class="choice" onclick="playGame('scissors')">
+                <img src="scissors.png" alt="Tesoura">
+                <p>Tesoura</p>
+            </div>
+        </div>
+        <div id="game-result" class="result"></div>
+        <div id="final-score" class="final-score"></div>
+        <button id="play-again" style="display: none;">Play Again</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+/* Reset some basic styles */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+
+body {
+    background-color: #000;
+}
+
+/* Navigation bar */
+header {
+    background-color: #121212;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    max-height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 50px
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #6d61f5;
+    font-weight: 500;
+    font-size: 18.5px;
+    text-shadow: #ffffff;
+
+    }
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.cta .btn-try-free {
+    display: inline-flex;
+    background-color: #e3dfdf;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.cta .btn-try-free:hover {
+    background-color: #6d61f5;
+}
+
+/* Hero section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #999;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.hero-buttons .btn-iphone,
+.hero-buttons .btn-macos {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.hero-buttons .btn-macos {
+    background-color: #ffffff;
+}
+
+.hero-buttons .btn-iphone:hover,
+.hero-buttons .btn-macos:hover {
+    background-color: rgb(109, 97, 245);
+}
+
+.hero-image img {
+    padding-left: 200px;
+    max-width: 80%;
+    height: auto;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa;
+}
