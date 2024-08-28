@@ -1,27 +1,38 @@
 let score = { won: 0, lost: 0, draw: 0 };
 let round = 1;
 const maxRounds = 3;
-let gamesToWin = Math.ceil(maxRounds / 2); // For best of 3, 2 wins are required to be the overall winner
+let gamesToWin = Math.ceil(maxRounds / 2); // Para melhor de 3, são necessárias 2 vitórias para ser o vencedor geral
+let userName = '';
+
+document.getElementById('start-game').addEventListener('click', () => {
+    userName = document.getElementById('user-name').value.trim();
+    if (userName) {
+        document.getElementById('user-name-container').style.display = 'none';
+        document.querySelector('.game-container').style.display = 'flex';
+    } else {
+        alert('Por favor, digite seu nome.');
+    }
+});
 
 function playGame(playerChoice) {
     if (round <= maxRounds && (score.won < gamesToWin && score.lost < gamesToWin)) {
         const choices = ['rock', 'paper', 'scissors'];
         const computerChoice = choices[Math.floor(Math.random() * 3)];
 
-        document.querySelectorAll('.choice img').forEach(img => img.style.transform = ''); // Reset any animations
+        document.querySelectorAll('.choice img').forEach(img => img.style.transform = ''); // Redefinir animações
 
-        // Display animation
+        // Exibir animação
         const playerHand = document.getElementById(playerChoice).querySelector('img');
         playerHand.style.transform = 'scale(1.5)';
 
-        // Determine result
+        // Determinar resultado
         const result = determineWinner(playerChoice, computerChoice);
 
         setTimeout(() => {
             updateScore(result);
             document.getElementById('game-result').textContent = `O computador escolheu ${computerChoice}. Você ${result}!`;
             checkForOverallWinner();
-        }, 300); // Delay to show animation
+        }, 300); // Atraso para mostrar a animação
 
         round++;
     }
@@ -50,11 +61,11 @@ function checkForOverallWinner() {
     if (score.won === gamesToWin || score.lost === gamesToWin || round > maxRounds) {
         let winnerMessage;
         if (score.won === gamesToWin) {
-            winnerMessage = 'Você venceu!';
+            winnerMessage = `Parabéns ${userName}, você venceu!`;
         } else if (score.lost === gamesToWin) {
-            winnerMessage = 'O computador venceu !';
+            winnerMessage = 'O computador venceu!';
         } else {
-            winnerMessage = 'Game over!';
+            winnerMessage = 'O jogo acabou!';
         }
         
         document.getElementById('game-result').textContent = winnerMessage;
@@ -69,10 +80,10 @@ function showFinalScore() {
 
 function endGame() {
     document.querySelectorAll('.choice').forEach(choice => {
-        choice.onclick = null; // Disable further clicks
+        choice.onclick = null; // Desabilitar cliques
     });
 
-    // Show Play Again button
+    // Mostrar botão Jogar Novamente
     const playAgainButton = document.getElementById('play-again');
     playAgainButton.style.display = 'block';
     playAgainButton.onclick = resetGame;
@@ -88,8 +99,9 @@ function resetGame() {
     document.getElementById('final-score').textContent = '';
 
     document.querySelectorAll('.choice').forEach(choice => {
-        choice.onclick = () => playGame(choice.id); // Re-enable clicks
+        choice.onclick = () => playGame(choice.id); // Reabilitar cliques
     });
 
-    document.getElementById('play-again').style.display = 'none'; // Hide Play Again button
+    document.getElementById('play-again').style.display = 'none'; // Ocultar botão Jogar Novamente
+    document.getElementById('user-name-container').style.display = 'block'; // Mostrar o formulário de nome novamente
 }

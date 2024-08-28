@@ -1,16 +1,17 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #ff9743; /* Light blue background for the body */
-    margin: 0;
+    background-image: url(background.png);
     padding: 0;
 }
 
 h1 {
     margin: 20px 0;
-    font-size: 2em;
-    color: #000000; /* Blue color for the title */
-    text-shadow: 1px 1px 2px #ffffff; /* White highlight */
+    font-size: 3em;
+    color: #ffffff; 
+    text-shadow: 1px 1px 2px #000000; 
+    text-shadow: 2px 2px 3px #000000; 
+    padding-bottom: 250px;
 }
 
 .game-container {
@@ -32,11 +33,11 @@ h1 {
 .choice {
     margin: 0 15px;
     cursor: pointer;
-    background-color: #ffffff; /* White background for the choice boxes */
-    border: 2px solid #bfff00; /* Blue border around the boxes */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px; /* Padding around the image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    background-color: #ffffff; 
+    border: 2px solid #0008ff; 
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .choice img {
@@ -54,7 +55,7 @@ h1 {
 .result {
     margin-top: 20px;
     font-size: 1.5em;
-    color: #000000;
+    color: #ffffff;
 }
 
 .final-score {
@@ -77,4 +78,28 @@ h1 {
 #play-again:hover {
     background-color: #b7b7b7; /* Slightly grey background on hover */
     border-color: #0c7aef; /* Darker blue border on hover */
+}
+#user-name-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#user-name {
+    padding: 10px;
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+#start-game {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #000000; /* Cor do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: 2px solid #ffffff; 
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#start-game:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
 }
