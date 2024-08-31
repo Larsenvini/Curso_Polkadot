@@ -1,90 +1,103 @@
 // Seleciona elementos do DOM
-
-// Seleciona elementos do DOM
-const newTaskInput = document.getElementById('newTask'); // Seleciona o campo de entrada de texto onde o usuário digita uma nova tarefa.
-const addTaskButton = document.getElementById('addTaskButton'); // Seleciona o botão "Adicionar Tarefa" que o usuário clica para adicionar uma nova tarefa à lista.
-const taskList = document.getElementById('taskList'); // Seleciona o elemento de lista (<ul>) onde as tarefas serão exibidas.
+const newTaskInput = document.getElementById('newTask');
+const taskDateInput = document.getElementById('taskDate'); // Novo campo para data
+const taskTimeInput = document.getElementById('taskTime'); // Novo campo para hora
+const addTaskButton = document.getElementById('addTaskButton');
+const taskList = document.getElementById('taskList');
 
 // Carrega tarefas salvas no Local Storage
-document.addEventListener('DOMContentLoaded', loadTasks); // Adiciona um ouvinte de evento que chama a função 'loadTasks' quando o documento HTML é totalmente carregado. Isso garante que as tarefas armazenadas no Local Storage sejam carregadas e exibidas na tela quando a página é aberta.
+document.addEventListener('DOMContentLoaded', loadTasks);
+
+// Define um valor padrão de data para 2024
+taskDateInput.addEventListener('focus', () => {
+    if (!taskDateInput.value) {
+        taskDateInput.value = '2024-01-01'; // Define a data padrão para 1º de janeiro de 2024
+    }
+});
 
 // Adiciona um ouvinte de evento ao botão de adicionar tarefa
-addTaskButton.addEventListener('click', addTask); // Adiciona um ouvinte de evento 'click' ao botão "Adicionar Tarefa". Quando o botão é clicado, a função 'addTask' é chamada para adicionar uma nova tarefa à lista.
+addTaskButton.addEventListener('click', addTask);
 
 // Função para adicionar uma nova tarefa
 function addTask() {
-    const taskText = newTaskInput.value.trim(); // Captura o texto digitado no campo de entrada de texto, removendo quaisquer espaços extras no início e no final.
+    const taskText = newTaskInput.value.trim();
+    const taskDate = taskDateInput.value; // Obtém a data da tarefa
+    const taskTime = taskTimeInput.value; // Obtém a hora da tarefa
 
-    if (taskText === '') { // Verifica se o campo de entrada está vazio.
-        alert('Por favor, insira uma tarefa.'); // Se estiver vazio, exibe um alerta para o usuário pedindo para inserir uma tarefa.
-        return; // Interrompe a execução da função se o campo de entrada estiver vazio.
+    if (taskText === '') {
+        alert('Por favor, insira uma tarefa.');
+        return;
     }
 
     // Cria um elemento de lista para a nova tarefa
-    const li = document.createElement('li'); // Cria um novo elemento de lista (<li>) para representar a nova tarefa.
-    li.textContent = taskText; // Define o texto do novo elemento de lista como o texto digitado pelo usuário.
+    const li = document.createElement('li');
+    li.textContent = `${taskText} - ${taskDate} ${taskTime}`; // Inclui data e hora
 
     // Adiciona um botão de remover a cada tarefa
-    const removeButton = document.createElement('button'); // Cria um novo botão que será usado para remover a tarefa.
-    removeButton.textContent = 'Remover'; // Define o texto do botão como "Remover".
-    removeButton.className = 'remove-button'; // Adiciona uma classe CSS ao botão para estilização.
-    removeButton.addEventListener('click', () => { // Adiciona um ouvinte de evento 'click' ao botão de remover.
-        li.remove(); // Remove o elemento de lista correspondente ao botão clicado.
-        saveTasks(); // Salva a lista atualizada de tarefas no Local Storage após a remoção.
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remover';
+    removeButton.className = 'remove-button';
+    removeButton.addEventListener('click', () => {
+        li.remove();
+        saveTasks();
     });
 
-    // Adiciona a tarefa à lista e ao DOM
-    li.appendChild(removeButton); // Adiciona o botão de remover como filho do elemento de lista (<li>).
-    li.addEventListener('click', () => { // Adiciona um ouvinte de evento 'click' ao elemento de lista para marcar a tarefa como concluída.
-        li.classList.toggle('completed'); // Alterna a classe 'completed' para o elemento de lista. Se a classe estiver presente, ela é removida; se não estiver presente, ela é adicionada.
-        saveTasks(); // Salva o estado atualizado da tarefa no Local Storage (se está concluída ou não).
+    li.appendChild(removeButton);
+    li.addEventListener('click', () => {
+        li.classList.toggle('completed');
+        saveTasks();
     });
-    taskList.appendChild(li); // Adiciona o elemento de lista (<li>) ao elemento de lista não ordenada (<ul>), exibindo a nova tarefa na tela.
+    taskList.appendChild(li);
 
-    // Limpa o campo de entrada de texto
-    newTaskInput.value = ''; // Limpa o campo de entrada de texto após adicionar a tarefa para que o usuário possa digitar uma nova tarefa.
+    // Limpa os campos de entrada
+    newTaskInput.value = '';
+    taskDateInput.value = '';
+    taskTimeInput.value = '';
 
-    saveTasks(); // Salva a lista atualizada de tarefas no Local Storage.
+    saveTasks();
 }
 
 // Função para salvar tarefas no Local Storage
 function saveTasks() {
-    const tasks = []; // Cria um array vazio para armazenar as tarefas.
-    taskList.querySelectorAll('li').forEach(task => { // Seleciona todos os elementos de lista (<li>) e itera sobre eles.
+    const tasks = [];
+    taskList.querySelectorAll('li').forEach(task => {
+        const [taskText, taskDate, taskTime] = task.textContent.replace('Remover', '').split(' - ').map(item => item.trim());
         tasks.push({
-            text: task.textContent.replace('Remover', '').trim(), // Adiciona um objeto ao array de tarefas contendo o texto da tarefa (removendo o texto do botão 'Remover') e removendo espaços extras.
-            completed: task.classList.contains('completed') // Verifica se a tarefa está marcada como concluída (contém a classe 'completed') e armazena o estado como booleano.
+            text: taskText,
+            date: taskDate,
+            time: taskTime,
+            completed: task.classList.contains('completed')
         });
     });
-    localStorage.setItem('tasks', JSON.stringify(tasks)); // Converte o array de tarefas para uma string JSON e salva no Local Storage com a chave 'tasks'.
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 // Função para carregar tarefas do Local Storage
 function loadTasks() {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks')); // Recupera as tarefas armazenadas no Local Storage e as converte de uma string JSON para um array de objetos.
-    if (savedTasks) { // Verifica se existem tarefas salvas.
-        savedTasks.forEach(task => { // Itera sobre cada tarefa salva e a recria na lista.
-            const li = document.createElement('li'); // Cria um novo elemento de lista (<li>) para cada tarefa salva.
-            li.textContent = task.text; // Define o texto do elemento de lista como o texto da tarefa salva.
+    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (savedTasks) {
+        savedTasks.forEach(task => {
+            const li = document.createElement('li');
+            li.textContent = `${task.text} - ${task.date} ${task.time}`;
 
-            if (task.completed) { // Verifica se a tarefa estava marcada como concluída.
-                li.classList.add('completed'); // Adiciona a classe 'completed' ao elemento de lista, marcando-o como concluído.
+            if (task.completed) {
+                li.classList.add('completed');
             }
 
-            const removeButton = document.createElement('button'); // Cria um botão "Remover" para cada tarefa carregada.
-            removeButton.textContent = 'Remover'; // Define o texto do botão como "Remover".
-            removeButton.className = 'remove-button'; // Adiciona uma classe CSS ao botão para estilização.
-            removeButton.addEventListener('click', () => { // Adiciona um ouvinte de evento 'click' ao botão de remover.
-                li.remove(); // Remove o elemento de lista correspondente ao botão clicado.
-                saveTasks(); // Salva a lista atualizada de tarefas no Local Storage após a remoção.
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remover';
+            removeButton.className = 'remove-button';
+            removeButton.addEventListener('click', () => {
+                li.remove();
+                saveTasks();
             });
 
-            li.appendChild(removeButton); // Adiciona o botão de remover ao elemento de lista (<li>).
-            li.addEventListener('click', () => { // Adiciona um ouvinte de evento 'click' ao elemento de lista para marcar a tarefa como concluída.
-                li.classList.toggle('completed'); // Alterna a classe 'completed' para o elemento de lista. Se a classe estiver presente, ela é removida; se não estiver presente, ela é adicionada.
-                saveTasks(); // Salva o estado atualizado da tarefa no Local Storage.
+            li.appendChild(removeButton);
+            li.addEventListener('click', () => {
+                li.classList.toggle('completed');
+                saveTasks();
             });
-            taskList.appendChild(li); // Adiciona o elemento de lista (<li>) ao elemento de lista não ordenada (<ul>), exibindo a tarefa carregada na tela.
+            taskList.appendChild(li);
         });
     }
 }
