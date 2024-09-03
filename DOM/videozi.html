@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibição de Vídeo do YouTube</title>
+    <style>
+        /* Estilo para centralizar e ajustar o tamanho do container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Tamanho máximo do container */
+            margin: 0 auto; /* Centraliza o container */
+            padding-top: 56.25%; /* Proporção de 16:9 para o vídeo */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Como fazer API calls usando apenas html:</h1>
+    <!-- Container para o vídeo -->
+    <div class="video-container">
+        <!-- Iframe para incorporar o vídeo do YouTube com um título acessível -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/xvFZjo5PgG0?si=RgEgg5glWWOQrdp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <main>
+        <section class="opa">
+            <div class="opa-texto">
+
+            </div>
+        </section>
+    </main>
+</body>
+</html>

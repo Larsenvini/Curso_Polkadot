@@ -1,0 +1,97 @@
+/* Reset some basic styles */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #949494;
+    padding: 20px;
+    text-align: center;
+}
+
+body {
+    display: block;
+    align-items: center;
+    background-color: #000;
+    text-align: center;
+}
+
+/* Navigation bar */
+header {
+    background-color: #2f2f2f;
+    padding: 10px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+.logo img {
+    max-height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 50px
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ff9500;
+    font-weight: 500;
+    font-size: 18.5px;
+    text-shadow: #ffffff;
+
+    }
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+}
+.cta .btn-try-free {
+    display: inline-flex;
+    background-color: #000000;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #ffa600;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.cta .btn-try-free:hover {
+    background-color: #ff6600;
+}
+
+.aa {
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 20px; /* Padding inside the container */
+    text-align: center; /* Center the button inside the div */
+    border-radius: 10px; /* Rounded corners for the container */
+    margin: 20px auto; /* Center the div on the page with some margin */
+    max-width: 300px; /* Maximum width for the container */
+}
+
+/* Style for the button */
+#botao {
+
+    color: white; /* White text */
+    padding: 15px 30px; /* Top-bottom and left-right padding */
+    font-size: 16px; /* Font size */
+    border: none; /* Remove the default button border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the button */
+#botao:hover {
+    background-color: #45a049; /* Darker green when hovered */
+}
